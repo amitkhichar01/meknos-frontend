@@ -5,12 +5,14 @@ interface EyebrowProps {
   className?: string;
 }
 
-export const Eyebrow: React.FC<EyebrowProps> = ({ children, className = "" }) => {
+export default function Eyebrow({ children, className = "" }: EyebrowProps) {
   return (
     <span
-      className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide bg-bg-surface text-text-secondary ${className}`}
+      className={`inline-flex items-center px-4 py-1.5 rounded-full text-xs sm:text-sm font-semibold tracking-wide bg-bg-secondary text-text-secondary ${className}`}
     >
       {children}
     </span>
   );
-};
+}
+
+export { Eyebrow };

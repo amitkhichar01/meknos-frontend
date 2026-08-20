@@ -1,4 +1,3 @@
-import React from "react";
 import { PolicyLayout } from "./PolicyLayout";
 import { siteConfig } from "../../config/site";
 
@@ -6,7 +5,7 @@ interface TermsOfServiceProps {
   onBack?: () => void;
 }
 
-export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onBack }) => {
+export default function TermsOfService({ onBack }: TermsOfServiceProps) {
   return (
     <PolicyLayout
       title="Terms of Service"
@@ -391,4 +390,4 @@ export const TermsOfService: React.FC<TermsOfServiceProps> = ({ onBack }) => {
       </section>
     </PolicyLayout>
   );
-};
+}

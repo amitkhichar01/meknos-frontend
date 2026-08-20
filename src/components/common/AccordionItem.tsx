@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronDownIcon } from "./Icons";
 
 interface AccordionItemProps {
@@ -7,15 +7,15 @@ interface AccordionItemProps {
   defaultOpen?: boolean;
 }
 
-export const AccordionItem: React.FC<AccordionItemProps> = ({
+export default function AccordionItem({
   question,
   answer,
   defaultOpen = false,
-}) => {
+}: AccordionItemProps) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
-    <div className="bg-bg-surface rounded-2xl p-5 sm:p-6 transition-all duration-200">
+    <div className="bg-bg-secondary rounded-2xl p-5 sm:p-6 transition-all duration-200">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full flex items-center justify-between text-left focus:outline-none group cursor-pointer"
@@ -39,4 +39,6 @@ export const AccordionItem: React.FC<AccordionItemProps> = ({
       )}
     </div>
   );
-};
+}
+
+export { AccordionItem };

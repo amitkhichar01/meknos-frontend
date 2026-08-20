@@ -1,4 +1,3 @@
-import React from "react";
 import { Eyebrow } from "./Eyebrow";
 
 interface SectionHeaderProps {
@@ -10,14 +9,14 @@ interface SectionHeaderProps {
   headingAs?: "h1" | "h2" | "h3";
 }
 
-export const SectionHeader: React.FC<SectionHeaderProps> = ({
+export default function SectionHeader({
   eyebrow,
   heading,
   description,
   center = true,
   className = "",
   headingAs = "h2",
-}) => {
+}: SectionHeaderProps) {
   const HeadingTag = headingAs;
 
   return (
@@ -28,7 +27,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
     >
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
 
-      <HeadingTag className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-text-primary tracking-tight leading-tight">
+      <HeadingTag className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-text-primary  font-outfit">
         {heading}
       </HeadingTag>
 
@@ -39,4 +38,7 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       )}
     </div>
   );
-};
+}
+
+export { SectionHeader };
+

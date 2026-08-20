@@ -1,9 +1,8 @@
-import React from "react";
-import { Container } from "../common/Container";
-import { Button } from "../common/Button";
+import Container from "../common/Container";
+import Button from "../common/Button";
 import { ArrowRightIcon } from "../common/Icons";
 
-export const FinalCtaSection: React.FC = () => {
+export default function FinalCtaSection() {
   return (
     <section className="py-16 sm:py-24">
       <Container>
@@ -13,8 +12,8 @@ export const FinalCtaSection: React.FC = () => {
               Stop sending people to a static profile.
             </h2>
             <p className="text-base sm:text-lg lg:text-xl opacity-90 leading-relaxed pt-2">
-              Give them a profile they can actually talk to. Create your Meknos, add your
-              information, and share one link with the people who need to know about you.
+              Give them a profile they can actually talk to. Let people ask what
+              they want to know and get the answers they need.
             </p>
           </div>
 
@@ -22,18 +21,20 @@ export const FinalCtaSection: React.FC = () => {
             <Button
               variant="primary"
               size="lg"
-              href="#create"
+              to="/login"
               icon={<ArrowRightIcon />}
-              className="!bg-bg-surface !text-text-inverse hover:!opacity-80 px-10 py-5 text-lg"
+              className="bg-bg-secondary !hover:opacity-80 px-10 py-5 text-lg text-text-primary"
             >
               Create your Meknos
             </Button>
             <p className="text-sm font-bold tracking-wide uppercase opacity-80 pt-2">
-              Your professional identity, now conversational.
+              Create your profile. Share one link. Let people ask.
             </p>
           </div>
         </div>
       </Container>
     </section>
   );
-};
+}
+
+export { FinalCtaSection };

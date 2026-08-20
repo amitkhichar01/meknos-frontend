@@ -1,6 +1,6 @@
 import React from "react";
-import { Container } from "../common/Container";
-import { Button } from "../common/Button";
+import Container from "../common/Container";
+import Button from "../common/Button";
 import { Eyebrow } from "../common/Eyebrow";
 import { ArrowLeftIcon } from "../common/Icons";
 
@@ -11,14 +11,14 @@ interface PolicyLayoutProps {
   children: React.ReactNode;
 }
 
-export const PolicyLayout: React.FC<PolicyLayoutProps> = ({
+export default function PolicyLayout({
   title,
   lastUpdated,
   onBack,
   children,
-}) => {
+}: PolicyLayoutProps) {
   return (
-    <div className="py-12 sm:py-20 bg-bg-primary text-text-primary">
+    <div className="py-12 sm:py-20">
       <Container>
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Top Actions & Header */}
@@ -38,7 +38,7 @@ export const PolicyLayout: React.FC<PolicyLayoutProps> = ({
                 <Button
                   variant="secondary"
                   size="sm"
-                  href="#"
+                  href="/"
                   icon={<ArrowLeftIcon />}
                 >
                   Back to Home
@@ -55,11 +55,13 @@ export const PolicyLayout: React.FC<PolicyLayoutProps> = ({
           </div>
 
           {/* Policy Document Content Card */}
-          <div className="bg-bg-surface p-6 sm:p-12 rounded-3xl text-text-primary space-y-8 text-sm sm:text-base leading-relaxed">
+          <div className="space-y-8 text-sm sm:text-base leading-relaxed">
             {children}
           </div>
         </div>
       </Container>
     </div>
   );
-};
+}
+
+export { PolicyLayout };

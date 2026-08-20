@@ -1,11 +1,10 @@
-import React from "react";
 import { PolicyLayout } from "./PolicyLayout";
 
 interface RefundPolicyProps {
   onBack?: () => void;
 }
 
-export const RefundPolicy: React.FC<RefundPolicyProps> = ({ onBack }) => {
+export default function RefundPolicy({ onBack }: RefundPolicyProps) {
   return (
     <PolicyLayout
       title="Refund & Cancellation Policy"
@@ -128,4 +127,4 @@ export const RefundPolicy: React.FC<RefundPolicyProps> = ({ onBack }) => {
       </section>
     </PolicyLayout>
   );
-};
+}

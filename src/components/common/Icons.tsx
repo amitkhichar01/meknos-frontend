@@ -4,7 +4,7 @@ interface IconProps extends React.SVGProps<SVGSVGElement> {
   className?: string;
 }
 
-export const LogoIcon: React.FC<IconProps> = ({ className = "w-6 h-6", ...props }) => (
+export const LogoIcon = ({ className = "w-6 h-6", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -33,7 +33,7 @@ export const LogoIcon: React.FC<IconProps> = ({ className = "w-6 h-6", ...props 
   </svg>
 );
 
-export const ArrowRightIcon: React.FC<IconProps> = ({ className = "w-4 h-4", ...props }) => (
+export const ArrowRightIcon = ({ className = "w-4 h-4", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -51,7 +51,7 @@ export const ArrowRightIcon: React.FC<IconProps> = ({ className = "w-4 h-4", ...
   </svg>
 );
 
-export const CheckIcon: React.FC<IconProps> = ({ className = "w-4 h-4", ...props }) => (
+export const CheckIcon = ({ className = "w-4 h-4", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -69,7 +69,7 @@ export const CheckIcon: React.FC<IconProps> = ({ className = "w-4 h-4", ...props
   </svg>
 );
 
-export const PlayIcon: React.FC<IconProps> = ({ className = "w-5 h-5", ...props }) => (
+export const PlayIcon = ({ className = "w-5 h-5", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="currentColor"
@@ -81,7 +81,7 @@ export const PlayIcon: React.FC<IconProps> = ({ className = "w-5 h-5", ...props 
   </svg>
 );
 
-export const ChevronDownIcon: React.FC<IconProps> = ({ className = "w-5 h-5", ...props }) => (
+export const ChevronDownIcon = ({ className = "w-5 h-5", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -99,7 +99,7 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = "w-5 h-5", ..
   </svg>
 );
 
-export const SparklesIcon: React.FC<IconProps> = ({ className = "w-5 h-5", ...props }) => (
+export const SparklesIcon = ({ className = "w-5 h-5", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -117,7 +117,7 @@ export const SparklesIcon: React.FC<IconProps> = ({ className = "w-5 h-5", ...pr
   </svg>
 );
 
-export const MessageSquareIcon: React.FC<IconProps> = ({ className = "w-5 h-5", ...props }) => (
+export const MessageSquareIcon = ({ className = "w-5 h-5", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -135,7 +135,7 @@ export const MessageSquareIcon: React.FC<IconProps> = ({ className = "w-5 h-5", 
   </svg>
 );
 
-export const MenuIcon: React.FC<IconProps> = ({ className = "w-6 h-6", ...props }) => (
+export const MenuIcon = ({ className = "w-6 h-6", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -153,7 +153,7 @@ export const MenuIcon: React.FC<IconProps> = ({ className = "w-6 h-6", ...props 
   </svg>
 );
 
-export const CloseIcon: React.FC<IconProps> = ({ className = "w-6 h-6", ...props }) => (
+export const CloseIcon = ({ className = "w-6 h-6", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -171,7 +171,7 @@ export const CloseIcon: React.FC<IconProps> = ({ className = "w-6 h-6", ...props
   </svg>
 );
 
-export const ArrowLeftIcon: React.FC<IconProps> = ({ className = "w-4 h-4", ...props }) => (
+export const ArrowLeftIcon = ({ className = "w-4 h-4", ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"

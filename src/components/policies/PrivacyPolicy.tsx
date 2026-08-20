@@ -1,4 +1,3 @@
-import React from "react";
 import { PolicyLayout } from "./PolicyLayout";
 import { siteConfig } from "../../config/site";
 
@@ -6,7 +5,7 @@ interface PrivacyPolicyProps {
   onBack?: () => void;
 }
 
-export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
+export default function PrivacyPolicy({ onBack }: PrivacyPolicyProps) {
   return (
     <PolicyLayout
       title="Privacy Policy"
@@ -411,4 +410,4 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
       </section>
     </PolicyLayout>
   );
-};
+}
