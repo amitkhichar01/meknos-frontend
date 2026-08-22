@@ -33,23 +33,23 @@ import AnalyticsTab from "./components/dashboard/AnalyticsTab";
 import useAuthStore from "./store/useAuthStore";
 import { loadGoogleScript, GOOGLE_CLIENT_ID } from "./utils/googleAuth";
 
-function ProtectedRoute() {
-  const { isAuthenticated, isInitialized } = useAuthStore();
+// function ProtectedRoute() {
+//   const { isAuthenticated, isInitialized } = useAuthStore();
 
-  if (!isInitialized) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-4 border-border-primary border-t-text-primary rounded-full" />
-      </div>
-    );
-  }
+//   if (!isInitialized) {
+//     return (
+//       <div className="min-h-[60vh] flex items-center justify-center">
+//         <div className="animate-spin w-8 h-8 border-4 border-border-primary border-t-text-primary rounded-full" />
+//       </div>
+//     );
+//   }
 
-  if (!isAuthenticated) {
-    return <Navigate to="/login" replace />;
-  }
+//   if (!isAuthenticated) {
+//     return <Navigate to="/login" replace />;
+//   }
 
-  return <Outlet />;
-}
+//   return <Outlet />;
+// }
 
 function ScrollToTopAndHash() {
   const { pathname, hash } = useLocation();

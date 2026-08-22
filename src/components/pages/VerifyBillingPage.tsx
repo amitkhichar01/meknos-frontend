@@ -1,15 +1,14 @@
 import { useEffect, useState, useCallback } from "react";
-import { useSearchParams, useNavigate, Link } from "react-router-dom";
+import { useSearchParams, useNavigate, Navigate } from "react-router-dom";
 import Container from "../common/Container";
 import Button from "../common/Button";
-import Logo from "../common/Logo";
 import {
   ReceiptPrinter,
   type ReceiptPrinterStage,
 } from "../billing/ReceiptPrinter";
 import billingApi, {
   type IPaymentRecord,
-  type ISubscriptionRecord,
+  // type ISubscriptionRecord,
 } from "../../api/billing.api";
 import useAuthStore from "../../store/useAuthStore";
 import useBillingStore from "../../store/useBillingStore";
@@ -20,13 +19,18 @@ export default function VerifyBillingPage() {
   const navigate = useNavigate();
   const orderId = searchParams.get("order_id");
 
-  const { fetchCurrentUser, isAuthenticated } = useAuthStore();
-  const { fetchCurrentBilling, fetchPayments, fetchSubscriptions } = useBillingStore();
+  const { fetchCurrentUser, isAuthenticated, isInitialized } = useAuthStore();
+  const { fetchCurrentBilling, fetchPayments, fetchSubscriptions } =
+    useBillingStore();
 
   const [stage, setStage] = useState<ReceiptPrinterStage>("processing");
-  const [statusText, setStatusText] = useState<string>("Verifying your payment...");
+  const [statusText, setStatusText] = useState<string>(
+    "Verifying your payment...",
+  );
   const [payment, setPayment] = useState<IPaymentRecord | null>(null);
-  const [subscription, setSubscription] = useState<ISubscriptionRecord | null>(null);
+  // const [subscription, setSubscription] = useState<ISubscriptionRecord | null>(
+  //   null,
+  // );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isVerifying, setIsVerifying] = useState<boolean>(true);
 
@@ -47,7 +51,7 @@ export default function VerifyBillingPage() {
     try {
       const result = await billingApi.verifyOrder(orderId);
       setPayment(result.payment || null);
-      setSubscription(result.subscription || null);
+      // setSubscription(result.subscription || null);
 
       if (result.status === "SUCCESS") {
         // Refresh auth & store state in background
@@ -91,15 +95,35 @@ export default function VerifyBillingPage() {
     } finally {
       setIsVerifying(false);
     }
-  }, [orderId, fetchCurrentUser, fetchCurrentBilling, fetchPayments, fetchSubscriptions]);
+  }, [
+    orderId,
+    fetchCurrentUser,
+    fetchCurrentBilling,
+    fetchPayments,
+    fetchSubscriptions,
+  ]);
 
   useEffect(() => {
-    verifyPayment();
-  }, [verifyPayment]);
+    if (isInitialized && isAuthenticated) {
+      verifyPayment();
+    }
+  }, [isInitialized, isAuthenticated, verifyPayment]);
 
   const handlePrint = () => {
     window.print();
   };
+
+  if (!isInitialized) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center bg-bg-primary">
+        <div className="animate-spin w-8 h-8 border-4 border-border-primary border-t-text-primary rounded-full" />
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
 
   const formattedDate = payment?.paidAt
     ? new Date(payment.paidAt).toLocaleString()
@@ -109,7 +133,7 @@ export default function VerifyBillingPage() {
     <div className="min-h-[calc(100vh-80px)] bg-bg-primary py-8 sm:py-14 flex flex-col justify-center">
       <Container className="max-w-7xl space-y-8">
         {/* Top Header Card */}
-        <div className="text-center space-y-3">         
+        <div className="text-center space-y-3">
           <h1 className="text-2xl sm:text-4xl font-extrabold text-text-primary font-outfit tracking-tight">
             {stage === "processing" && "Verifying your payment..."}
             {stage === "printing" && "Processing Receipt..."}
@@ -151,9 +175,7 @@ export default function VerifyBillingPage() {
 
             <ReceiptPrinter.Screen>
               <div className="space-y-2">
-                <ReceiptPrinter.Status>
-                  {statusText}
-                </ReceiptPrinter.Status>
+                <ReceiptPrinter.Status>{statusText}</ReceiptPrinter.Status>
 
                 {orderId && (
                   <div className="text-[11px] font-mono text-zinc-400 truncate pt-1 border-t border-zinc-800/80 flex items-center justify-between">
@@ -257,11 +279,14 @@ export default function VerifyBillingPage() {
               </div>
 
               {/* Error Message inside receipt if failed */}
-              {errorMessage && (stage === "failed" || stage === "error" || stage === "pending") && (
-                <div className="mt-3 p-3 rounded bg-neutral-100 border border-neutral-300 text-[11px] text-neutral-700 leading-relaxed font-sans">
-                  <strong>Notice:</strong> {errorMessage}
-                </div>
-              )}
+              {errorMessage &&
+                (stage === "failed" ||
+                  stage === "error" ||
+                  stage === "pending") && (
+                  <div className="mt-3 p-3 rounded bg-neutral-100 border border-neutral-300 text-[11px] text-neutral-700 leading-relaxed font-sans">
+                    <strong>Notice:</strong> {errorMessage}
+                  </div>
+                )}
 
               {/* Receipt Footer Barcode decorative */}
               <div className="pt-6 text-center space-y-1">

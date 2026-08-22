@@ -54,6 +54,7 @@ export interface IPaymentRecord {
   planVersion: number;
   orderId: string;
   cfPaymentId?: string;
+  provider: string;
   amount: number;
   currency: string;
   status: "PENDING" | "SUCCESS" | "FAILED" | "USER_DROPPED" | "CANCELLED";
