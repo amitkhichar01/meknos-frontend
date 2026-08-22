@@ -4,11 +4,11 @@ import { ArrowRightIcon } from "../common/Icons";
 
 export default function FinalCtaSection() {
   return (
-    <section className="py-16 sm:py-24">
+    <section className="pt-16 sm:pt-24">
       <Container>
         <div className="p-10 sm:p-16 lg:p-20 rounded-3xl bg-bg-inverse text-text-inverse text-center max-w-5xl mx-auto space-y-8 shadow-2xl relative overflow-hidden">
           <div className="space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-semibold font-outfit">
               Stop sending people to a static profile.
             </h2>
             <p className="text-base sm:text-lg lg:text-xl opacity-90 leading-relaxed pt-2">

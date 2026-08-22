@@ -22,6 +22,13 @@ import HomePage from "./components/pages/HomePage";
 import LoginPage from "./components/pages/LoginPage";
 import DashboardPage from "./components/pages/DashboardPage";
 import PublicProfilePage from "./components/pages/PublicProfilePage";
+import VerifyBillingPage from "./components/pages/VerifyBillingPage";
+
+import DashboardLayout from "./components/layout/DashboardLayout";
+import BillingTab from "./components/dashboard/BillingTab";
+import PaymentHistoryTab from "./components/dashboard/PaymentHistoryTab";
+import SubscriptionHistoryTab from "./components/dashboard/SubscriptionHistoryTab";
+import AnalyticsTab from "./components/dashboard/AnalyticsTab";
 
 import useAuthStore from "./store/useAuthStore";
 import { loadGoogleScript, GOOGLE_CLIENT_ID } from "./utils/googleAuth";
@@ -166,15 +173,6 @@ function AppContent() {
               )
             }
           />
-
-          {/*protected routes*/}
-          <Route element={<ProtectedRoute />}>
-            <Route
-              path="/dashboard"
-              element={<DashboardPage />}
-            />
-          </Route>
-
           <Route
             path="/privacy"
             element={<PrivacyPolicy onBack={navigateToHome} />}
@@ -187,7 +185,21 @@ function AppContent() {
             path="/refund"
             element={<RefundPolicy onBack={navigateToHome} />}
           />
+          <Route path="/billing/verify" element={<VerifyBillingPage />} />
         </Route>
+
+        {/*dashboard routes*/}
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/dashboard/billing" element={<BillingTab />} />
+          <Route path="/dashboard/payments" element={<PaymentHistoryTab />} />
+          <Route
+            path="/dashboard/subscriptions"
+            element={<SubscriptionHistoryTab />}
+          />
+          <Route path="/dashboard/analytics" element={<AnalyticsTab />} />
+        </Route>
+
         <Route
           path="/in/:username"
           element={<PublicProfilePage onNavigateHome={navigateToHome} />}

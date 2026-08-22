@@ -18,7 +18,7 @@ export default function PolicyLayout({
   children,
 }: PolicyLayoutProps) {
   return (
-    <div className="py-12 sm:py-20">
+    <div className="pt-12 sm:pt-20">
       <Container>
         <div className="max-w-6xl mx-auto space-y-8">
           {/* Top Actions & Header */}

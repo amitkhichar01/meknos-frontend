@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import Container from "../common/Container";
 import Button from "../common/Button";
 import chatApi from "../../api/chat.api";
+import userProfileApi from "../../api/userProfile.api";
 import type { PublicUserProfile, ChatMessage } from "../../types/chat";
 import { Link, useParams } from "react-router-dom";
 
@@ -22,6 +23,7 @@ export default function PublicProfilePage({
   const [isLoadingHistory, setIsLoadingHistory] = useState(true);
   const [isSending, setIsSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showBranding, setShowBranding] = useState<boolean>(true);
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
@@ -37,7 +39,7 @@ export default function PublicProfilePage({
     scrollToBottom();
   }, [messages, isSending]);
 
-  // Load public profile and chat history
+  // Load public profile, branding setting, and chat history
   useEffect(() => {
     let isMounted = true;
 
@@ -61,6 +63,17 @@ export default function PublicProfilePage({
         }
       } finally {
         if (isMounted) setIsLoadingProfile(false);
+      }
+
+      // Fetch Profile Config
+      try {
+        const { data: configRes } =
+          await userProfileApi.getPublicProfileConfig(username);
+        if (isMounted && configRes?.data) {
+          setShowBranding(!configRes.data.removeBranding);
+        }
+      } catch (err) {
+        console.error("Failed to load profile config:", err);
       }
 
       // Fetch Chat History for this visitor
@@ -345,9 +358,11 @@ export default function PublicProfilePage({
           </div>
           <div className="w-full flex justify-around flex-wrap py-2">
             <p className="text-xs text-text-secondary">Chat history expires after 24 hours of inactivity.</p>
-            <Link to="/" className="text-sm font-bold text-center ">
-              Powered by Meknos
-            </Link>
+            {showBranding && (
+              <Link to="/" className="text-sm font-bold text-center">
+                Powered by Meknos
+              </Link>
+            )}
           </div>
         </div>
       </Container>

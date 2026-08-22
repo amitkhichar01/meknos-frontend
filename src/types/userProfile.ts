@@ -9,6 +9,7 @@ export interface UserProfile {
   content: string;
   suggestedQuestions: string[];
   isPublished: boolean;
+  aiTone?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -17,12 +18,14 @@ export interface CreateProfilePayload {
   content: string;
   suggestedQuestions?: string[];
   isPublished: boolean;
+  aiTone?: string;
 }
 
 export interface UpdateProfilePayload {
   content?: string;
   suggestedQuestions?: string[];
   isPublished?: boolean;
+  aiTone?: string;
 }
 
 export type UserProfileResponse = BaseApiResponse<UserProfile>;

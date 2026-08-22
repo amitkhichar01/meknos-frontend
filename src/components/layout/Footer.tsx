@@ -34,7 +34,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-bg-secondary py-16 text-text-primary">
+    <footer className="bg-bg-secondary py-16 mt-16 text-text-primary">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12">
           {/* Brand Column */}

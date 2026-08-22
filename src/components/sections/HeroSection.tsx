@@ -7,6 +7,7 @@ export default function HeroSection() {
     <section className="py-16 sm:py-24 lg:py-28 text-center">
       <Container>
         <div className="flex flex-col items-center max-w-4xl mx-auto space-y-6 sm:space-y-8">
+          <img src="./bg-image.webp" alt="hero section banner" className="w-full h-full bg-no-repeat absolute top-0 -z-20 mask-t-from-0%" />
           {/* Main Headline */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-semibold text-text-primary font-outfit">
             Make it easier for clients to choose you
